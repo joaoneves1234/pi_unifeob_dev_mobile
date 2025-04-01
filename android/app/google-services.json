@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "831169649859",
+    "project_id": "pi-unifeob",
+    "storage_bucket": "pi-unifeob.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831169649859:android:4cad341c1a8356772a5676",
+        "android_client_info": {
+          "package_name": "com.example.pi_unifeob_dev_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831169649859-q3fkitc2lj1mulsfrfbbojcsfosbr2pc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A9tfoEviRokwqgsooVcZvVeSmTF2J4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831169649859-q3fkitc2lj1mulsfrfbbojcsfosbr2pc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "831169649859-h9s2v3mj86ol35run3t2o337b7rcmrdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.testeProjeto"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
