@@ -19,7 +19,10 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.10.5'
-          channel: stable  # <- ESSENCIAL para usar Dart 3.7.2
+          channel: stable   # ESSENCIAL para Dart 3.7.2
+
+      - name: Run flutter doctor
+        run: flutter doctor -v
 
       - name: Flutter pub get
         run: flutter pub get
