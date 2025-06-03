@@ -16,11 +16,10 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Setup Flutter (Dart >= 3.7.2)
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.19.6'  # Essa versão tem Dart 3.7.3
-          cache: false               # Evita problemas de cache
+      - name: Instalar Flutter 3.19.6 (Dart 3.7.3)
+        run: |
+          git clone https://github.com/flutter/flutter.git --branch 3.19.6 --depth 1
+          echo "$(pwd)/flutter/bin" >> $GITHUB_PATH
 
       - name: Verificar versão do Flutter
         run: flutter --version
