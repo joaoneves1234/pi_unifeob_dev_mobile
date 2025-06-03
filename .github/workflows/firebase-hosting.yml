@@ -19,16 +19,20 @@ jobs:
       - name: Instalar Flutter 3.19.6 (Dart 3.7.3)
         run: |
           git clone https://github.com/flutter/flutter.git --branch 3.19.6 --depth 1
-          echo "$(pwd)/flutter/bin" >> $GITHUB_PATH
-
-      - name: Verificar versão do Flutter
-        run: flutter --version
+          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
+          export PATH="$GITHUB_WORKSPACE/flutter/bin:$PATH"
+          flutter doctor
+          flutter --version
 
       - name: Flutter pub get
         run: flutter pub get
+        env:
+          PATH: ${{ github.workspace }}/flutter/bin:${{ env.PATH }}
 
       - name: Build web
         run: flutter build web --release
+        env:
+          PATH: ${{ github.workspace }}/flutter/bin:${{ env.PATH }}
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -38,3 +42,4 @@ jobs:
           channelId: live
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
+          PATH: ${{ github.workspace }}/flutter/bin:${{ env.PATH }}
