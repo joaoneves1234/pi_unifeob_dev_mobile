@@ -13,17 +13,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.10.5'  # Versão compatível com Dart 3.7.2+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.10.5'  # Versão compatível com Dart 3.7.2+
 
-    - name: Flutter pub get
-      run: flutter pub get
+      - name: Flutter pub get
+        run: flutter pub get
 
-    - name: Build web
-      run: flutter build web --release
+      - name: Build web
+        run: flutter build web --release
 
-    # Aqui você pode adicionar passos para deploy, testes, etc.
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_TOKEN }}"
+          channelId: live
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
