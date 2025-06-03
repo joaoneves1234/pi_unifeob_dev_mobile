@@ -1,10 +1,7 @@
-name: Flutter CI com Deploy Firebase Hosting
+name: Flutter CI com deploy Firebase Hosting
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
@@ -13,24 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
+      - name: Checkout código
         uses: actions/checkout@v3
 
-      - name: Setup Flutter
+      - name: Setup Flutter 3.19.6
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.6' # versão Flutter que suporta Dart 3.7.2+
+          flutter-version: '3.19.6'
 
-      - name: Verificar versão do Flutter (confirma a versão correta)
+      - name: Verificar versão do Flutter
         run: flutter --version
+
+      - name: Flutter clean
+        run: flutter clean
 
       - name: Flutter pub get
         run: flutter pub get
 
-      - name: Build web release
+      - name: Build Flutter Web
         run: flutter build web --release
 
-      - name: Deploy no Firebase Hosting
+      - name: Deploy para Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
