@@ -16,23 +16,19 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Instalar Flutter 3.19.6 (Dart 3.7.3)
-        run: |
-          git clone https://github.com/flutter/flutter.git --branch 3.19.6 --depth 1
-          echo "${{ github.workspace }}/flutter/bin" >> $GITHUB_PATH
-        shell: bash
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.6' # versão Flutter que suporta Dart 3.7.2+
 
-      - name: Verificar versão do Flutter (para garantir que está no PATH)
+      - name: Verificar versão do Flutter (confirma a versão correta)
         run: flutter --version
-        shell: bash
 
       - name: Flutter pub get
         run: flutter pub get
-        shell: bash
 
-      - name: Build web em release
+      - name: Build web release
         run: flutter build web --release
-        shell: bash
 
       - name: Deploy no Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
