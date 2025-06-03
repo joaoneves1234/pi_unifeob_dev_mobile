@@ -1,4 +1,4 @@
-name: Flutter CI
+name: Flutter CI com Deploy Firebase Hosting
 
 on:
   push:
@@ -19,22 +19,23 @@ jobs:
       - name: Instalar Flutter 3.19.6 (Dart 3.7.3)
         run: |
           git clone https://github.com/flutter/flutter.git --branch 3.19.6 --depth 1
-          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
-          export PATH="$GITHUB_WORKSPACE/flutter/bin:$PATH"
-          flutter doctor
+          echo "${{ github.workspace }}/flutter/bin" >> $GITHUB_PATH
           flutter --version
+        shell: bash
 
       - name: Flutter pub get
         run: flutter pub get
         env:
           PATH: ${{ github.workspace }}/flutter/bin:${{ env.PATH }}
+        shell: bash
 
-      - name: Build web
+      - name: Build web em release
         run: flutter build web --release
         env:
           PATH: ${{ github.workspace }}/flutter/bin:${{ env.PATH }}
+        shell: bash
 
-      - name: Deploy to Firebase Hosting
+      - name: Deploy no Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
@@ -43,3 +44,4 @@ jobs:
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
           PATH: ${{ github.workspace }}/flutter/bin:${{ env.PATH }}
+        shell: bash
