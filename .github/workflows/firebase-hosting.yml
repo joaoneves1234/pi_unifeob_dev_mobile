@@ -44,4 +44,3 @@ jobs:
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
           PATH: ${{ github.workspace }}/flutter/bin:${{ env.PATH }}
-        shell: bash
