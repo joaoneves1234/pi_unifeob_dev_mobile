@@ -13,12 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout do código
+        uses: actions/checkout@v3
 
-      - name: Setup Flutter
+      - name: Setup Flutter (Dart >= 3.7.2)
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.6' # ✅ Essa versão vem com Dart 3.7.3
+          flutter-version: '3.19.6'  # Essa versão tem Dart 3.7.3
+          cache: false               # Evita problemas de cache
+
+      - name: Verificar versão do Flutter
+        run: flutter --version
 
       - name: Flutter pub get
         run: flutter pub get
