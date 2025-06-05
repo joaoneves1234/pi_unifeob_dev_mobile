@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: Text(
                     'Ver Reuniões Agendadas',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.red),
                   ),
                 ),
               ],
